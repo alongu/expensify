@@ -6,3 +6,7 @@
 
 // DEPLOY:
 // git push heroku master
+
+// for PRODUCTION!!!!
+// WE have to set the ENVIRONMENT variables over our PC!!!!!
+// SEE THE HEROKU ENVIRONMENT VARIABLES lecture in react coures - lecture 156
