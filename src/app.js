@@ -10,6 +10,7 @@ import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 import 'react-dates/lib/css/_datepicker.css';
 import { firebase } from './firebase/firebase';
+import LoadingPage from './components/LoadingPage';
 
 const store = configureStore();
 // The Provider allows ALL OUR COMPONENTS in the AppRouter to access to the store!!!
@@ -26,7 +27,7 @@ const renderApp = () => {
     }
 };
 
-ReactDOM.render(<p>Loading...</p>, document.getElementById('expensify-app'));
+ReactDOM.render(<LoadingPage />, document.getElementById('expensify-app'));
 
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {

@@ -6,8 +6,8 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 if (process.env.NODE_ENV === 'test') {
-   require('dotenv').config({ path: '.env.test' });
-} else if (process.env.NODE_ENV === 'development'){
+    require('dotenv').config({ path: '.env.test' });
+} else if (process.env.NODE_ENV === 'development') {
     require('dotenv').config({ path: '.env.development' });
 }
 
@@ -16,20 +16,23 @@ module.exports = (env) => {
     const CSSExtract = new ExtractTextPlugin('styles.css');
 
     return {
-        entry: './src/app.js',
+        entry: [
+            'babel-polyfill',
+            './src/app.js'
+        ],
         output: {
             path: path.join(__dirname, 'public', 'dist'),
             filename: 'bundle.js'
         },
-        module:{
+        module: {
             rules: [{
                 loader: 'babel-loader',
                 test: /\.jsx?$/, // this says that any .js file that you see in the application - use the babel-loader to babel it - meaning it takes the jsx and convert it into js es-5
                 exclude: /node_modules/
-            },{
+            }, {
                 test: /\.s?css$/,
-                use: CSSExtract.extract({ 
-                    use:[
+                use: CSSExtract.extract({
+                    use: [
                         {
                             loader: 'css-loader',
                             options: {
@@ -43,7 +46,7 @@ module.exports = (env) => {
                             }
                         }
                     ]
-                 })
+                })
             }]
         },
         plugins: [
@@ -63,7 +66,7 @@ module.exports = (env) => {
             historyApiFallback: true, // tells the server to just return the index.html when using the react /... for unknown 404 (when user enter a path it will not go to server path, but to client router path)
             publicPath: '/dist/'
         }
-    };    
+    };
 };
 
 // in package.json file: (explained)
