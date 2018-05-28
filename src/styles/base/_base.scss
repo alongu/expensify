@@ -1,0 +1,34 @@
+
+// That is a universal selector. by default, it is set to content-box.
+// We set this to be border-box because when we want to say a height of an item is 50px, 
+// we want the computed height to be 50px, INCLUDING the padding and the margin.
+// otherwise - only the content will be 50px, but with padding and the margin it will become bigger
+// which is not what we want 
+* {
+    box-sizing: border-box;
+}
+
+// rem -> better than the pixels, because it allows user to change the size? something like this
+// 1.6 rem == 16 pixels. using the 62.5% we are moving to base 10 of the font size.. 
+html{
+    font-size: 62.5%;
+}
+
+body{
+    color:$dark-grey;
+    line-height: 1.6;
+    font-family: Helvetica, Arial, sans-serif; // fall back to Arai or sans-serif font in case Helvatica does not exists
+    font-size: $m-size;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: default;
+}
+
+.is-active {
+    font-weight: bold;
+}
